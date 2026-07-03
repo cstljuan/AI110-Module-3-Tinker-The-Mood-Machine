@@ -65,3 +65,16 @@ During this lab you will:
 - When debugging, print tokens, scores, or intermediate choices.
 - Ask an AI assistant to help create edge case posts or unusual wording.
 - Try examples that mislead or confuse your model. Failure cases teach you the most.
+
+---
+
+## Results
+
+The dataset in `dataset.py` now has 20 labeled posts. The rule based model in `mood_analyzer.py` scores 75% accuracy (15 out of 20) on this dataset. The ML model in `ml_experiments.py` scores 100% on the same dataset, but that number only reflects training accuracy, not real performance on new text. See `model_card.md` for the full writeup, including specific misclassified examples, why each one fails, and a direct comparison between the rule based and ML approaches.
+
+**Note for Windows users:** the dataset includes emoji. If `python main.py` crashes with a `UnicodeEncodeError`, your terminal is likely using the older `cp1252` codepage instead of UTF-8. Run this first:
+
+```bash
+set PYTHONIOENCODING=utf-8       # cmd
+$env:PYTHONIOENCODING="utf-8"    # PowerShell
+```
