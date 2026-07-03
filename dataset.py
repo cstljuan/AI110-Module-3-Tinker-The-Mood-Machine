@@ -50,6 +50,17 @@ SAMPLE_POSTS = [
     "This is fine",
     "So excited for the weekend",
     "I am not happy about this",
+    # --- Added: slang, emojis, sarcasm, and mixed/ambiguous tone ---
+    "lowkey stressed but kinda proud of myself ngl",
+    "this movie was mid, wouldn't watch again",
+    "just got home from the gym, feeling amazing :)",
+    "oh great, another Monday 🙄",
+    "I absolutely love getting stuck in traffic for two hours",
+    "no cap this is the best day ever 🔥",
+    "meh, it was okay I guess",
+    "so tired of this but also kinda excited for tomorrow",
+    "3am and can't sleep, brain won't stop 💀",
+    "highkey obsessed with this new song 😭",
 ]
 
 # Human labels for each post above.
@@ -65,30 +76,31 @@ TRUE_LABELS = [
     "neutral",   # "This is fine"
     "positive",  # "So excited for the weekend"
     "negative",  # "I am not happy about this"
+    # --- Added labels (must stay aligned with SAMPLE_POSTS above) ---
+    "mixed",     # "lowkey stressed but kinda proud of myself ngl"
+    "negative",  # "this movie was mid, wouldn't watch again" (slang: "mid" = mediocre/bad)
+    "positive",  # "just got home from the gym, feeling amazing"
+    "negative",  # "oh great, another Monday" (sarcasm: "great" is not meant literally)
+    "negative",  # "I absolutely love getting stuck in traffic for two hours" (sarcasm)
+    "positive",  # "no cap this is the best day ever" (slang: "no cap" = "no lie")
+    "neutral",   # "meh, it was okay I guess" (lukewarm, non-committal)
+    "mixed",     # "so tired of this but also kinda excited for tomorrow"
+    "negative",  # "3am and can't sleep, brain won't stop" (distress, not literally negative words)
+    "positive",  # "highkey obsessed with this new song" (slang: "highkey" = openly/very)
 ]
 
-# TODO: Add 5-10 more posts and labels.
-#
-# Requirements:
-#   - For every new post you add to SAMPLE_POSTS, you must add one
-#     matching label to TRUE_LABELS.
-#   - SAMPLE_POSTS and TRUE_LABELS must always have the same length.
-#   - Include a variety of language styles, such as:
-#       * Slang ("lowkey", "highkey", "no cap")
-#       * Emojis (":)", ":(", "🥲", "😂", "💀")
-#       * Sarcasm ("I absolutely love getting stuck in traffic")
-#       * Ambiguous or mixed feelings
-#
-# Tips:
-#   - Try to create some examples that are hard to label even for you.
-#   - Make a note of any examples that you and a friend might disagree on.
-#     Those "edge cases" are interesting to inspect for both the rule based
-#     and ML models.
-#
-# Example of how you might extend the lists:
-#
-# SAMPLE_POSTS.append("Lowkey stressed but kind of proud of myself")
-# TRUE_LABELS.append("mixed")
+# Notes on edge cases (things a friend might label differently):
+#   - "oh great, another Monday" and "I absolutely love getting stuck in
+#     traffic for two hours" are sarcastic. The literal words are positive
+#     ("great", "love") but the intended meaning is negative. A keyword
+#     based system has no way to detect sarcasm, so these are good stress
+#     tests for the rule based model.
+#   - "meh, it was okay I guess" vs. "so tired of this but also kinda
+#     excited for tomorrow" both sit near the boundary between "neutral"
+#     and "mixed" -- reasonable people could disagree on which is which.
+#   - "3am and can't sleep, brain won't stop" contains no obvious
+#     positive/negative keywords at all, yet most people would read it as
+#     a negative/distressed post.
 #
 # Remember to keep them aligned:
 #   len(SAMPLE_POSTS) == len(TRUE_LABELS)
