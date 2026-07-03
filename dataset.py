@@ -74,6 +74,11 @@ SAMPLE_POSTS = [
     "so tired of this but also kinda excited for tomorrow",
     "3am and can't sleep, brain won't stop 💀",
     "highkey obsessed with this new song 😭",
+    # --- Added: dataset-sensitivity probes for comparing rule based vs ML ---
+    "Traffic was light today, made it home early and relaxed",
+    "Stuck at my desk all afternoon but got a lot done",
+    "The bus arrives at 8am every weekday",
+    "Made a big pot of soup and it turned out great",
 ]
 
 # Human labels for each post above.
@@ -100,6 +105,11 @@ TRUE_LABELS = [
     "mixed",     # "so tired of this but also kinda excited for tomorrow"
     "negative",  # "3am and can't sleep, brain won't stop" (distress, not literally negative words)
     "positive",  # "highkey obsessed with this new song" (slang: "highkey" = openly/very)
+    # --- Added labels (dataset-sensitivity probes) ---
+    "positive",  # "Traffic was light today, made it home early and relaxed" ("traffic" appears, but this is genuinely positive)
+    "mixed",     # "Stuck at my desk all afternoon but got a lot done" ("stuck" appears, but tone is mixed, not negative)
+    "neutral",   # "The bus arrives at 8am every weekday"
+    "positive",  # "Made a big pot of soup and it turned out great"
 ]
 
 # Notes on edge cases (things a friend might label differently):
