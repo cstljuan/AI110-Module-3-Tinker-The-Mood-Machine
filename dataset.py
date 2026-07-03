@@ -23,6 +23,14 @@ POSITIVE_WORDS = [
     "chill",
     "relaxed",
     "amazing",
+    # Added: same-meaning synonyms missing from the starter list. Without
+    # these, sentences like "tired but hopeful" or "stressed but proud"
+    # only registered their negative half, so they scored as plain
+    # "negative" instead of "mixed" -- the positive half was invisible to
+    # the model, not because of ambiguity but because the word was simply
+    # never in the vocabulary.
+    "proud",
+    "hopeful",
 ]
 
 NEGATIVE_WORDS = [
@@ -36,6 +44,11 @@ NEGATIVE_WORDS = [
     "stressed",
     "hate",
     "boring",
+    # Added: "exhausted" is a plain synonym of "tired", not a slang or
+    # polysemous word, so adding it carries little risk of misfiring on
+    # unrelated meanings (unlike "sick" or "fire", which mean different
+    # things depending on context and were intentionally left out).
+    "exhausted",
 ]
 
 # ---------------------------------------------------------------------
